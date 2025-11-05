@@ -1,29 +1,60 @@
 .chess-board-container {
-  background: var(--color-bg-card);
-  padding: var(--spacing-lg);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, #FFFFFF 0%, #FEFDFB 100%);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl), var(--shadow-glow);
   position: relative;
+  border: 3px solid transparent;
+  background-clip: padding-box;
 }
 
-/* Decorative Border with Islamic Pattern */
+/* Decorative Border with Islamic Pattern - Enhanced */
 .chess-board-container::before {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: var(--radius-lg);
-  padding: 3px;
+  inset: -4px;
+  border-radius: var(--radius-xl);
+  padding: 4px;
   background: linear-gradient(
-    45deg,
-    var(--color-accent),
-    var(--color-primary),
-    var(--color-accent)
+    135deg,
+    var(--color-gold) 0%,
+    var(--color-accent) 25%,
+    var(--color-primary) 50%,
+    var(--color-accent) 75%,
+    var(--color-gold) 100%
   );
+  background-size: 200% 200%;
+  animation: borderGlow 4s ease-in-out infinite;
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    background-position: 0% 50%;
+    opacity: 1;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.8;
+  }
+}
+
+/* Corner Ornaments */
+.chess-board-container::after {
+  content: '◆';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  color: var(--color-gold);
+  font-size: 1.2rem;
+  opacity: 0.6;
+  text-shadow: 0 0 10px var(--color-gold);
   pointer-events: none;
 }
 
@@ -33,10 +64,26 @@
   grid-template-rows: repeat(8, 1fr);
   width: 560px;
   height: 560px;
-  border: 3px solid var(--color-border-dark);
-  border-radius: var(--radius-sm);
+  border: 5px solid var(--color-border-dark);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 0 0 30px rgba(0, 0, 0, 0.15),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5),
+    0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+}
+
+/* Board Inner Glow */
+.chess-board::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-sm);
+  box-shadow: inset 0 0 40px rgba(197, 165, 114, 0.1);
+  pointer-events: none;
+  z-index: 10;
 }
 
 .square {
@@ -45,65 +92,143 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all var(--transition-normal);
   user-select: none;
+  z-index: 1;
 }
 
 .square.light {
-  background: var(--color-square-light);
+  background: linear-gradient(135deg, #F5EBD8 0%, #F0E6D2 100%);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
 .square.dark {
-  background: var(--color-square-dark);
+  background: linear-gradient(135deg, #C49A55 0%, #B88B4A 100%);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .square:hover {
-  filter: brightness(0.95);
+  transform: scale(0.98);
+  filter: brightness(1.05);
+  z-index: 2;
 }
 
 .square.selected {
-  background: var(--color-square-selected) !important;
-  box-shadow: inset 0 0 0 3px var(--color-primary);
+  background: linear-gradient(135deg, #FFE55C 0%, #FFD700 100%) !important;
+  box-shadow:
+    inset 0 0 0 4px var(--color-primary),
+    inset 0 2px 8px rgba(255, 215, 0, 0.5),
+    0 0 15px rgba(255, 215, 0, 0.5);
+  animation: pulse 1.5s ease-in-out infinite;
+  z-index: 3;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow:
+      inset 0 0 0 4px var(--color-primary),
+      inset 0 2px 8px rgba(255, 215, 0, 0.5),
+      0 0 15px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 4px var(--color-primary),
+      inset 0 2px 8px rgba(255, 215, 0, 0.7),
+      0 0 25px rgba(255, 215, 0, 0.7);
+  }
 }
 
 .square.legal-move::after {
   content: '';
   position: absolute;
-  width: 30%;
-  height: 30%;
-  background: var(--color-square-legal);
+  width: 32%;
+  height: 32%;
+  background: radial-gradient(circle, var(--color-square-legal) 0%, transparent 70%);
   border-radius: 50%;
-  border: 2px solid rgba(0, 107, 125, 0.5);
+  border: 3px solid rgba(76, 175, 80, 0.6);
   pointer-events: none;
+  animation: legalMovePulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.4);
+}
+
+@keyframes legalMovePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
 }
 
 .square.legal-move:hover::after {
-  width: 40%;
-  height: 40%;
-  background: rgba(124, 252, 0, 0.5);
+  width: 45%;
+  height: 45%;
+  background: radial-gradient(circle, rgba(76, 175, 80, 0.6) 0%, transparent 70%);
+  border-width: 4px;
+  animation: none;
+  transform: scale(1);
 }
 
 .square.last-move {
-  background-color: var(--color-square-last-move) !important;
+  background:
+    linear-gradient(135deg, rgba(255, 193, 7, 0.5) 0%, rgba(255, 235, 59, 0.5) 100%),
+    var(--color-square-light);
+  box-shadow: inset 0 0 15px rgba(255, 193, 7, 0.4);
+}
+
+.square.dark.last-move {
+  background:
+    linear-gradient(135deg, rgba(255, 193, 7, 0.5) 0%, rgba(255, 235, 59, 0.5) 100%),
+    var(--color-square-dark);
 }
 
 .square.can-drop {
-  box-shadow: inset 0 0 0 4px var(--color-primary);
+  box-shadow:
+    inset 0 0 0 5px var(--color-primary),
+    inset 0 0 20px rgba(0, 107, 125, 0.3),
+    0 0 20px rgba(0, 107, 125, 0.4);
+  animation: canDropGlow 0.8s ease-in-out infinite;
+  z-index: 3;
 }
 
-/* Coordinate Labels */
+@keyframes canDropGlow {
+  0%, 100% {
+    box-shadow:
+      inset 0 0 0 5px var(--color-primary),
+      inset 0 0 20px rgba(0, 107, 125, 0.3),
+      0 0 20px rgba(0, 107, 125, 0.4);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 5px var(--color-primary-light),
+      inset 0 0 20px rgba(0, 107, 125, 0.5),
+      0 0 30px rgba(0, 107, 125, 0.6);
+  }
+}
+
+/* Coordinate Labels - Enhanced */
 .rank-label,
 .file-label {
   position: absolute;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--color-text-secondary);
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 0.5;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  z-index: 5;
+  transition: opacity var(--transition-fast);
+}
+
+.square:hover .rank-label,
+.square:hover .file-label {
+  opacity: 0.8;
 }
 
 .rank-label {
-  top: 4px;
+  top: 3px;
   left: 4px;
 }
 
@@ -113,13 +238,19 @@
 }
 
 .file-label {
-  bottom: 4px;
+  bottom: 3px;
   right: 4px;
 }
 
 [dir="rtl"] .file-label {
   right: auto;
   left: 4px;
+}
+
+.square.dark .rank-label,
+.square.dark .file-label {
+  color: var(--color-text-light);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 /* Responsive Board */

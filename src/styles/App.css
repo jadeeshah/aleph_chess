@@ -4,11 +4,13 @@
   flex-direction: column;
 }
 
-/* Header with Arabesque Border */
+/* Header with Enhanced Arabesque Border */
 .app-header {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  padding: var(--spacing-lg) var(--spacing-xl);
-  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary-dark) 100%);
+  padding: var(--spacing-xl) var(--spacing-2xl);
+  box-shadow:
+    var(--shadow-lg),
+    0 0 30px rgba(0, 107, 125, 0.4);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,23 +18,41 @@
   overflow: hidden;
 }
 
+/* Islamic pattern overlay on header */
+.app-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 20px,
+    rgba(255, 255, 255, 0.03) 20px,
+    rgba(255, 255, 255, 0.03) 40px
+  );
+  pointer-events: none;
+}
+
+/* Animated golden border at bottom */
 .app-header::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 4px;
+  height: 5px;
   background: linear-gradient(
     90deg,
-    var(--color-accent) 0%,
-    var(--color-accent-light) 25%,
-    var(--color-accent) 50%,
-    var(--color-accent-light) 75%,
-    var(--color-accent) 100%
+    var(--color-gold) 0%,
+    var(--color-accent-light) 20%,
+    var(--color-gold) 40%,
+    var(--color-accent-light) 60%,
+    var(--color-gold) 80%,
+    var(--color-accent-light) 100%
   );
   background-size: 200% 100%;
-  animation: shimmer 3s linear infinite;
+  animation: shimmer 4s linear infinite;
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
 }
 
 @keyframes shimmer {
@@ -45,12 +65,31 @@
 }
 
 .app-title {
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 700;
   color: var(--color-text-light);
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow:
+    3px 3px 6px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(212, 175, 55, 0.3);
   margin: 0;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  position: relative;
+  z-index: 1;
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow:
+      3px 3px 6px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  50% {
+    text-shadow:
+      3px 3px 6px rgba(0, 0, 0, 0.4),
+      0 0 30px rgba(212, 175, 55, 0.5),
+      0 0 40px rgba(212, 175, 55, 0.3);
+  }
 }
 
 /* Main Content */

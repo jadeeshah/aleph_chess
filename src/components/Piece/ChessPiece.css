@@ -1,46 +1,102 @@
 .chess-piece {
-  font-size: 3.5rem;
+  font-size: 4rem;
   line-height: 1;
   user-select: none;
   cursor: grab;
-  transition: transform var(--transition-fast);
-  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
+  transition: all var(--transition-normal);
+  position: relative;
+  z-index: 5;
+  animation: pieceAppear 0.3s ease-out;
+}
+
+@keyframes pieceAppear {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .chess-piece:active {
   cursor: grabbing;
+  transform: scale(1.05) rotate(5deg);
 }
 
 .chess-piece:hover {
-  transform: scale(1.1);
+  transform: scale(1.15) translateY(-3px);
+  filter: drop-shadow(3px 6px 8px rgba(0, 0, 0, 0.5));
 }
 
 .chess-piece.dragging {
-  opacity: 0.5;
+  opacity: 0.7;
   cursor: grabbing;
+  transform: scale(1.2) rotate(8deg);
+  filter: drop-shadow(5px 8px 12px rgba(0, 0, 0, 0.6));
+  animation: none;
 }
 
 .chess-piece.not-playable {
   cursor: default;
+  opacity: 0.85;
 }
 
 .chess-piece.not-playable:hover {
   transform: none;
+  filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.3));
 }
 
+/* White Pieces - Enhanced with realistic 3D effect */
 .chess-piece.w {
   color: #FFFFFF;
+  filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.4));
   text-shadow:
-    -1px -1px 0 #000,
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000,
-    0 0 5px rgba(255, 255, 255, 0.5);
+    -1.5px -1.5px 0 #333,
+    1.5px -1.5px 0 #333,
+    -1.5px 1.5px 0 #333,
+    1.5px 1.5px 0 #333,
+    -1.5px 0 0 #333,
+    1.5px 0 0 #333,
+    0 -1.5px 0 #333,
+    0 1.5px 0 #333,
+    0 0 8px rgba(255, 255, 255, 0.6),
+    0 0 12px rgba(255, 255, 255, 0.4),
+    2px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
+.chess-piece.w:hover {
+  text-shadow:
+    -1.5px -1.5px 0 #222,
+    1.5px -1.5px 0 #222,
+    -1.5px 1.5px 0 #222,
+    1.5px 1.5px 0 #222,
+    -1.5px 0 0 #222,
+    1.5px 0 0 #222,
+    0 -1.5px 0 #222,
+    0 1.5px 0 #222,
+    0 0 12px rgba(255, 255, 255, 0.8),
+    0 0 16px rgba(255, 255, 255, 0.6),
+    0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+/* Black Pieces - Enhanced with depth */
 .chess-piece.b {
   color: #1A1A1A;
-  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.4));
+  text-shadow:
+    0 1px 2px rgba(255, 255, 255, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 6px rgba(0, 0, 0, 0.6),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.1);
+}
+
+.chess-piece.b:hover {
+  text-shadow:
+    0 1px 3px rgba(255, 255, 255, 0.3),
+    0 2px 6px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(0, 0, 0, 0.8);
 }
 
 /* Responsive Piece Size */
