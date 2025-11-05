@@ -115,6 +115,20 @@
   direction: rtl;
 }
 
+/* Left and Right Panels */
+.left-panel,
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
 /* Footer */
 .app-footer {
   background: var(--color-bg-dark);

@@ -3,9 +3,12 @@ import './Controls.css'
 
 interface ControlsProps {
   game: any
+  timer?: any
+  onNewGame?: () => void
+  onOpenTimeSettings?: () => void
 }
 
-export default function Controls({ game }: ControlsProps) {
+export default function Controls({ game, timer, onNewGame, onOpenTimeSettings }: ControlsProps) {
   const { t } = useTranslation()
 
   const handleNewGame = () => {
@@ -13,12 +16,26 @@ export default function Controls({ game }: ControlsProps) {
       !game.gameState.isGameOver ||
       window.confirm(t('messages.confirmResign') || 'Start a new game?')
     ) {
-      game.resetGame()
+      if (onNewGame) {
+        onNewGame()
+      } else {
+        game.resetGame()
+      }
     }
   }
 
   const handleUndo = () => {
     game.undoMove()
+  }
+
+  const handlePauseResume = () => {
+    if (timer) {
+      if (timer.timerState.isPaused) {
+        timer.resumeTimer()
+      } else {
+        timer.pauseTimer()
+      }
+    }
   }
 
   return (
@@ -33,6 +50,20 @@ export default function Controls({ game }: ControlsProps) {
       >
         {t('controls.undo')}
       </button>
+      {timer && (
+        <button
+          className="btn btn-secondary"
+          onClick={handlePauseResume}
+          disabled={!timer.timerState.isRunning}
+        >
+          {timer.timerState.isPaused ? t('timeControl.resume') : t('timeControl.pause')}
+        </button>
+      )}
+      {onOpenTimeSettings && (
+        <button className="btn btn-secondary" onClick={onOpenTimeSettings}>
+          ⏱️ {t('timeControl.title')}
+        </button>
+      )}
     </div>
   )
 }

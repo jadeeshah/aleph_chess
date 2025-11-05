@@ -1,0 +1,209 @@
+.chess-timer {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FEFDFB 100%);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--color-border);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.chess-timer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--color-border);
+  transition: all var(--transition-normal);
+}
+
+.chess-timer.w::before {
+  background: linear-gradient(90deg, #E0E0E0, #FFFFFF);
+}
+
+.chess-timer.b::before {
+  background: linear-gradient(90deg, #2C2C2C, #4A4A4A);
+}
+
+.chess-timer.active {
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(0, 107, 125, 0.4);
+  border-color: var(--color-primary);
+  transform: scale(1.02);
+}
+
+.chess-timer.active::before {
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-secondary),
+    var(--color-primary)
+  );
+  background-size: 200% 100%;
+  animation: timerGlow 2s linear infinite;
+  height: 5px;
+  box-shadow: 0 2px 10px var(--color-primary);
+}
+
+@keyframes timerGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.chess-timer.low-time {
+  animation: lowTimePulse 1s ease-in-out infinite;
+}
+
+@keyframes lowTimePulse {
+  0%, 100% {
+    box-shadow: var(--shadow-md), 0 0 15px rgba(244, 67, 54, 0.4);
+    border-color: #F44336;
+  }
+  50% {
+    box-shadow: var(--shadow-lg), 0 0 25px rgba(244, 67, 54, 0.6);
+    border-color: #D32F2F;
+  }
+}
+
+.chess-timer.low-time::before {
+  background: linear-gradient(90deg, #F44336, #E53935, #F44336) !important;
+  background-size: 200% 100%;
+  animation: timerGlow 1s linear infinite !important;
+}
+
+.chess-timer.timed-out {
+  background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+  border-color: #D32F2F;
+  box-shadow: var(--shadow-md), inset 0 0 20px rgba(211, 47, 47, 0.2);
+}
+
+.timer-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-sm);
+  letter-spacing: 0.5px;
+}
+
+.timer-display {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.timer-main {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timer-milliseconds {
+  font-size: 1.5rem;
+  color: var(--color-text-secondary);
+  margin-left: 2px;
+}
+
+.chess-timer.low-time .timer-display {
+  color: #D32F2F;
+  animation: timerFlash 0.5s ease-in-out infinite;
+}
+
+@keyframes timerFlash {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.timeout-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(211, 47, 47, 0.95);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-lg);
+  animation: timeoutAppear 0.3s ease-out;
+  z-index: 10;
+}
+
+@keyframes timeoutAppear {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.active-indicator {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 12px;
+  height: 12px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--color-primary);
+  animation: activeIndicatorPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes activeIndicatorPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.7;
+  }
+}
+
+[dir="rtl"] .active-indicator {
+  right: auto;
+  left: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .chess-timer {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  .timer-display {
+    font-size: 2rem;
+  }
+
+  .timer-milliseconds {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .timer-display {
+    font-size: 1.5rem;
+  }
+
+  .timer-label {
+    font-size: 0.8rem;
+  }
+}

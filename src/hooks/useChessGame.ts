@@ -3,7 +3,11 @@ import { Chess } from 'chess.js'
 import type { Square, PieceSymbol } from 'chess.js'
 import type { GameState } from '../types/chess'
 
-export function useChessGame() {
+interface UseChessGameOptions {
+  onMove?: () => void
+}
+
+export function useChessGame(options?: UseChessGameOptions) {
   const [game, setGame] = useState(() => new Chess())
   const [gameState, setGameState] = useState<GameState>(() => getGameState(new Chess()))
 
@@ -61,6 +65,10 @@ export function useChessGame() {
         if (result) {
           setGame(new Chess(game.fen()))
           updateGameState()
+          // Trigger timer switch if callback provided
+          if (options?.onMove) {
+            options.onMove()
+          }
           return true
         }
         return false
