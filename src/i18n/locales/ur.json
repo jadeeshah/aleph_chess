@@ -1,0 +1,79 @@
+{
+  "pieces": {
+    "k": "بادشاہ",
+    "q": "وزیر",
+    "r": "رخ",
+    "b": "فیل",
+    "n": "گھوڑا",
+    "p": "پیادہ"
+  },
+  "colors": {
+    "white": "سفید",
+    "black": "سیاہ"
+  },
+  "status": {
+    "turn": "{{color}} کی باری",
+    "check": "شہ",
+    "checkmate": "شہ مات! {{winner}} جیت گیا",
+    "stalemate": "بادشاہ بند! برابری",
+    "draw": "برابری",
+    "gameOver": "کھیل ختم"
+  },
+  "controls": {
+    "newGame": "نیا کھیل",
+    "resign": "ہار مان لیں",
+    "offerDraw": "برابری کی پیشکش",
+    "undo": "واپس",
+    "flipBoard": "بورڈ الٹائیں",
+    "settings": "ترتیبات"
+  },
+  "moves": {
+    "castle": "قلعہ بندی",
+    "enPassant": "راستے میں لینا",
+    "promotion": "پیادے کی ترقی",
+    "capture": "لینا"
+  },
+  "settings": {
+    "title": "ترتیبات",
+    "language": "زبان",
+    "boardTheme": "بورڈ کا انداز",
+    "pieceStyle": "مہروں کا انداز",
+    "soundEffects": "آواز کے اثرات",
+    "showLegalMoves": "قانونی چالیں دکھائیں",
+    "highlightLastMove": "آخری چال نمایاں کریں",
+    "close": "بند کریں"
+  },
+  "languages": {
+    "ar": "العربية",
+    "ur": "اردو",
+    "fa": "فارسی"
+  },
+  "messages": {
+    "welcome": "الف شطرنج میں خوش آمدید",
+    "selectPiece": "چلنے کے لیے مہرہ منتخب کریں",
+    "illegalMove": "غیر قانونی چال",
+    "confirmResign": "کیا آپ واقعی ہار ماننا چاہتے ہیں؟",
+    "drawOffered": "برابری کی پیشکش کی گئی",
+    "drawAccepted": "برابری قبول کر لی گئی",
+    "drawDeclined": "برابری مسترد کر دی گئی"
+  },
+  "gameMode": {
+    "title": "کھیل کا طریقہ منتخب کریں",
+    "vsPlayer": "کھلاڑی بمقابلہ کھلاڑی",
+    "vsComputer": "کھلاڑی بمقابلہ کمپیوٹر",
+    "difficulty": "دشواری کی سطح",
+    "easy": "آسان",
+    "medium": "درمیانی",
+    "hard": "مشکل"
+  },
+  "captured": {
+    "title": "لیے گئے مہرے",
+    "white": "سفید",
+    "black": "سیاہ"
+  },
+  "moveHistory": {
+    "title": "چالوں کی تاریخ",
+    "move": "چال {{number}}",
+    "noMoves": "کھیل ابھی شروع نہیں ہوا"
+  }
+}

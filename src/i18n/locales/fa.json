@@ -1,0 +1,79 @@
+{
+  "pieces": {
+    "k": "شاه",
+    "q": "وزیر",
+    "r": "رخ",
+    "b": "فیل",
+    "n": "اسب",
+    "p": "سرباز"
+  },
+  "colors": {
+    "white": "سفید",
+    "black": "سیاه"
+  },
+  "status": {
+    "turn": "نوبت {{color}}",
+    "check": "کیش",
+    "checkmate": "کیش و مات! {{winner}} برنده شد",
+    "stalemate": "پات! مساوی",
+    "draw": "مساوی",
+    "gameOver": "بازی تمام شد"
+  },
+  "controls": {
+    "newGame": "بازی جدید",
+    "resign": "تسلیم",
+    "offerDraw": "پیشنهاد مساوی",
+    "undo": "بازگشت",
+    "flipBoard": "چرخش صفحه",
+    "settings": "تنظیمات"
+  },
+  "moves": {
+    "castle": "قلعه رفتن",
+    "enPassant": "در گذر",
+    "promotion": "ارتقای سرباز",
+    "capture": "برداشتن"
+  },
+  "settings": {
+    "title": "تنظیمات",
+    "language": "زبان",
+    "boardTheme": "طرح صفحه",
+    "pieceStyle": "سبک مهره‌ها",
+    "soundEffects": "جلوه‌های صوتی",
+    "showLegalMoves": "نمایش حرکات مجاز",
+    "highlightLastMove": "برجسته‌سازی آخرین حرکت",
+    "close": "بستن"
+  },
+  "languages": {
+    "ar": "العربية",
+    "ur": "اردو",
+    "fa": "فارسی"
+  },
+  "messages": {
+    "welcome": "به شطرنج الف خوش آمدید",
+    "selectPiece": "مهره‌ای را برای حرکت انتخاب کنید",
+    "illegalMove": "حرکت غیرمجاز",
+    "confirmResign": "آیا مطمئن هستید که می‌خواهید تسلیم شوید؟",
+    "drawOffered": "مساوی پیشنهاد شد",
+    "drawAccepted": "مساوی پذیرفته شد",
+    "drawDeclined": "مساوی رد شد"
+  },
+  "gameMode": {
+    "title": "حالت بازی را انتخاب کنید",
+    "vsPlayer": "بازیکن در برابر بازیکن",
+    "vsComputer": "بازیکن در برابر کامپیوتر",
+    "difficulty": "سطح دشواری",
+    "easy": "آسان",
+    "medium": "متوسط",
+    "hard": "سخت"
+  },
+  "captured": {
+    "title": "مهره‌های گرفته شده",
+    "white": "سفید",
+    "black": "سیاه"
+  },
+  "moveHistory": {
+    "title": "تاریخچه حرکات",
+    "move": "حرکت {{number}}",
+    "noMoves": "بازی هنوز شروع نشده است"
+  }
+}

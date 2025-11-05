@@ -1,0 +1,63 @@
+.chess-piece {
+  font-size: 3.5rem;
+  line-height: 1;
+  user-select: none;
+  cursor: grab;
+  transition: transform var(--transition-fast);
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
+}
+
+.chess-piece:active {
+  cursor: grabbing;
+}
+
+.chess-piece:hover {
+  transform: scale(1.1);
+}
+
+.chess-piece.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.chess-piece.not-playable {
+  cursor: default;
+}
+
+.chess-piece.not-playable:hover {
+  transform: none;
+}
+
+.chess-piece.w {
+  color: #FFFFFF;
+  text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000,
+    0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.chess-piece.b {
+  color: #1A1A1A;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Piece Size */
+@media (max-width: 768px) {
+  .chess-piece {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .chess-piece {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .chess-piece {
+    font-size: 2rem;
+  }
+}

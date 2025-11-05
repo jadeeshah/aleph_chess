@@ -1,0 +1,79 @@
+{
+  "pieces": {
+    "k": "الملك",
+    "q": "الوزير",
+    "r": "الرخ",
+    "b": "الفيل",
+    "n": "الحصان",
+    "p": "البيدق"
+  },
+  "colors": {
+    "white": "أبيض",
+    "black": "أسود"
+  },
+  "status": {
+    "turn": "دور {{color}}",
+    "check": "كش ملك",
+    "checkmate": "كش مات! فاز {{winner}}",
+    "stalemate": "جمود! تعادل",
+    "draw": "تعادل",
+    "gameOver": "انتهت اللعبة"
+  },
+  "controls": {
+    "newGame": "لعبة جديدة",
+    "resign": "استسلام",
+    "offerDraw": "عرض التعادل",
+    "undo": "تراجع",
+    "flipBoard": "قلب اللوحة",
+    "settings": "الإعدادات"
+  },
+  "moves": {
+    "castle": "التبييت",
+    "enPassant": "أخذ بالمرور",
+    "promotion": "ترقية البيدق",
+    "capture": "أخذ"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "boardTheme": "مظهر اللوحة",
+    "pieceStyle": "نمط القطع",
+    "soundEffects": "المؤثرات الصوتية",
+    "showLegalMoves": "إظهار الحركات القانونية",
+    "highlightLastMove": "تمييز آخر حركة",
+    "close": "إغلاق"
+  },
+  "languages": {
+    "ar": "العربية",
+    "ur": "اردو",
+    "fa": "فارسی"
+  },
+  "messages": {
+    "welcome": "مرحباً بك في شطرنج الألف",
+    "selectPiece": "اختر قطعة للحركة",
+    "illegalMove": "حركة غير قانونية",
+    "confirmResign": "هل أنت متأكد من الاستسلام؟",
+    "drawOffered": "تم عرض التعادل",
+    "drawAccepted": "تم قبول التعادل",
+    "drawDeclined": "تم رفض التعادل"
+  },
+  "gameMode": {
+    "title": "اختر نمط اللعبة",
+    "vsPlayer": "لاعب ضد لاعب",
+    "vsComputer": "لاعب ضد الحاسوب",
+    "difficulty": "مستوى الصعوبة",
+    "easy": "سهل",
+    "medium": "متوسط",
+    "hard": "صعب"
+  },
+  "captured": {
+    "title": "القطع المأخوذة",
+    "white": "أبيض",
+    "black": "أسود"
+  },
+  "moveHistory": {
+    "title": "تاريخ الحركات",
+    "move": "الحركة {{number}}",
+    "noMoves": "لم تبدأ اللعبة بعد"
+  }
+}
