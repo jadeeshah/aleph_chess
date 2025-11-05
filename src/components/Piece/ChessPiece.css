@@ -7,6 +7,11 @@
   position: relative;
   z-index: 5;
   animation: pieceAppear 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 @keyframes pieceAppear {

@@ -61,16 +61,25 @@ export default function Status({ game }: StatusProps) {
           {gameState.moveHistory.length === 0 ? (
             <p className="no-moves">{t('moveHistory.noMoves')}</p>
           ) : (
-            gameState.moveHistory.map((move: any, index: number) => (
-              <div key={index} className="move-item">
-                <span className="move-number">{Math.floor(index / 2) + 1}.</span>
-                <span className="move-notation">
-                  {move.piece.toUpperCase()}
-                  {move.from}-{move.to}
-                  {move.captured ? 'x' : ''}
-                </span>
-              </div>
-            ))
+            Array.from({ length: Math.ceil(gameState.moveHistory.length / 2) }, (_, i) => {
+              const whiteMove = gameState.moveHistory[i * 2]
+              const blackMove = gameState.moveHistory[i * 2 + 1]
+
+              const formatMove = (move: any) => {
+                if (!move) return ''
+                const piece = move.piece === 'p' ? '' : move.piece.toUpperCase()
+                const capture = move.captured ? 'x' : ''
+                return `${piece}${capture}${move.to}`
+              }
+
+              return (
+                <div key={i} className="move-item">
+                  <span className="move-number">{i + 1}.</span>
+                  <span className="move-notation white-move">{formatMove(whiteMove)}</span>
+                  {blackMove && <span className="move-notation black-move">{formatMove(blackMove)}</span>}
+                </div>
+              )
+            })
           )}
         </div>
       </div>

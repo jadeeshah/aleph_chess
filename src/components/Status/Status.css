@@ -243,6 +243,15 @@
   font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: 0.5px;
+  min-width: 50px;
+}
+
+.move-notation.white-move {
+  color: var(--color-text-primary);
+}
+
+.move-notation.black-move {
+  color: var(--color-text-secondary);
 }
 
 /* RTL Support */

@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { Chess } from 'chess.js'
 import type { Square, PieceSymbol } from 'chess.js'
 import type { GameState } from '../types/chess'
@@ -49,10 +49,6 @@ export function useChessGame(options?: UseChessGameOptions) {
     }
   }
 
-  const updateGameState = useCallback(() => {
-    setGameState(getGameState(game))
-  }, [game])
-
   const makeMove = useCallback(
     (from: Square, to: Square, promotion?: PieceSymbol): boolean => {
       try {
@@ -63,8 +59,9 @@ export function useChessGame(options?: UseChessGameOptions) {
         })
 
         if (result) {
-          setGame(new Chess(game.fen()))
-          updateGameState()
+          const newGame = new Chess(game.fen())
+          setGame(newGame)
+          setGameState(getGameState(newGame))
           // Trigger timer switch if callback provided
           if (options?.onMove) {
             options.onMove()
@@ -76,7 +73,7 @@ export function useChessGame(options?: UseChessGameOptions) {
         return false
       }
     },
-    [game, updateGameState]
+    [game, options]
   )
 
   const getLegalMoves = useCallback(
@@ -96,12 +93,13 @@ export function useChessGame(options?: UseChessGameOptions) {
   const undoMove = useCallback(() => {
     const move = game.undo()
     if (move) {
-      setGame(new Chess(game.fen()))
-      updateGameState()
+      const newGame = new Chess(game.fen())
+      setGame(newGame)
+      setGameState(getGameState(newGame))
       return true
     }
     return false
-  }, [game, updateGameState])
+  }, [game])
 
   const getPieceAt = useCallback(
     (square: Square) => {
@@ -117,10 +115,6 @@ export function useChessGame(options?: UseChessGameOptions) {
     },
     [game]
   )
-
-  useEffect(() => {
-    updateGameState()
-  }, [updateGameState])
 
   return {
     game,
